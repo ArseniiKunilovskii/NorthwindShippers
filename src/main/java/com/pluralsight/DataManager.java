@@ -60,8 +60,34 @@ public class DataManager {
         }
     }
 
-    public void updateRecord(){
+    public void updateRecord(int id, String phone){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "UPDATE shippers SET phone = ? WHERE shipperId = ?")) {
+            preparedStatement.setString(1, phone);
+            preparedStatement.setInt(2, id);
 
+            int rows = preparedStatement.executeUpdate();
+
+            System.out.println("Rows Updated: " + rows);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
+
+    public void deleteRecord(int id) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "DELETE FROM shippers WHERE shipperID= ?")) {
+            preparedStatement.setInt(1, id);
+
+            int rows = preparedStatement.executeUpdate();
+            System.out.println("Rows Deleted: " + rows);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
 }
