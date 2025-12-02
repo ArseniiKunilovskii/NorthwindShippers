@@ -60,7 +60,7 @@ public class DataManager {
         }
     }
 
-    public void updateRecord(int id, String phone){
+    public void updatePhone(int id, String phone){
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      "UPDATE shippers SET phone = ? WHERE shipperId = ?")) {

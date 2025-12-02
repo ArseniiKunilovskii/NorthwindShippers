@@ -34,4 +34,12 @@ public class Shipper {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "Shipper " +
+                " id= " + id +
+                ", name=" + name+
+                ", phone='" + phone;
+    }
 }
